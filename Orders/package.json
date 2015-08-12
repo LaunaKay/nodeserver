@@ -1,0 +1,11 @@
+{
+  "name": "Orders",
+  "description": "Orders for Coding Dojo",
+  "dependencies": {
+    "body-parser": "^1.10.1",
+    "express": "~4.10.0",
+    "moment": "^2.10.3",
+    "mongoose": "^4.0.1",
+    "routes": "^2.0.0"
+  }
+}

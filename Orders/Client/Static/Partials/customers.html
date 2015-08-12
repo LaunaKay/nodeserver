@@ -1,0 +1,35 @@
+<div class = "container" ng-controller='customersController'>
+    <div style="margin-bottom:15px;">
+        <form name="inputForm">
+            <legend>Add a new customer</legend>
+            <span ng-show="addDuplicate" style="color:red">'This customer already exists.'</span>
+            <span ng-hide="addDuplicate"></span>
+            <div class="form-group">
+                <label for="name">Customer Name:</label>
+                <input style="width:50%" type="text" ng-model="newCustomer.name" ng-required="true" name="name" id="name" placeholder="enter name">
+            </div>
+    </div>
+        <button type="submit" ng-click="addCustomer()" class="btn btn-primary">Submit</button>
+    </form>
+    <div>
+        <input type="text" placeholder="search name" style="float:right;" ng-model="filter_name">
+    </div>
+    <div style="margin-top:50px">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Created Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat = "customer in customers | filter:filter_name | orderBy:'created'">
+                    <td ng-bind = 'customer.name'></td>
+                    <td ng-bind = 'customer.created'></td>
+                    <td><button ng-click='deleteCustomer(customer)'>Remove</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

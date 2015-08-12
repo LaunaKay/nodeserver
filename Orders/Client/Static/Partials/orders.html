@@ -1,0 +1,48 @@
+<div ng-controller='ordersController' class = "container">
+    <div style="margin-bottom:15px;">
+        <form name="orderForm">
+            <legend>Add a new order</legend>
+            <div class="form-group">
+                <label for="name">Customer:</label>
+                <select style="display:block" ng-model="newOrder.name" ng-options="customer.name for customer in customers" >
+                </select>
+                <label for="quantity">Order:</label>
+                <select name="quantity" ng-model="newOrder.quantity">
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                </select>
+                <select ng-model="newOrder.product" ng-options = "product.product for product in products">
+                </select>
+            </div>
+    </div>
+        <button type="submit" ng-click = "addOrder()" class="btn btn-primary">Order</button>
+        </form>
+        <span ng-show="addDuplicate" style="color:red">'You have already ordered this product.'</span>
+        <span ng-hide="addDuplicate"></span>
+    <div>
+        <input type="text" placeholder="search products" style="float:right;" ng-model="filter_name">
+    </div>
+    <div style="margin-top:50px">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat = "order in orders | filter:filter_name | orderBy:'name'">
+                    <td ng-bind = 'order.name'></td>
+                    <td ng-bind = 'order.product'></td>
+                    <td ng-bind = 'order.quantity'></td>
+                    <td ng-bind = 'order.date'></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
